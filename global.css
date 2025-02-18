@@ -236,7 +236,7 @@ select {
   display: none;
 }
 
-/* ------------------------------------------------------------------ */
+/* ------------------------dropzone------------------------------------- */
 
 .dropzone {
   border: 1px dashed var(--stroke-default);
@@ -279,7 +279,7 @@ select {
   content: url("../icons/cloud-upload_houver.svg"); /* Imagem ao passar o mouse */
 }
 
-/* -----------------------------footer----------------------------- */
+/* -----------------------------radio----------------------------- */
 
 /*Estilização opcoes de matriculas*/
 
@@ -300,4 +300,71 @@ label + .radio-wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(7.5rem, 2fr));
   gap: 1rem;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .radio-wrapper-um {
+    grid-template-columns: 1fr; /* Passa para 1 coluna */
+  }
+
+  #radio-wrapper {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(7.5rem, 1fr)
+    ); /* Ajusta o tamanho mínimo */
+  }
+}
+
+/* Responsividade para telas muito pequenas (celulares) */
+@media (max-width: 480px) {
+  .radio-wrapper-um {
+    grid-template-columns: 1fr; /* Mantém uma única coluna */
+  }
+
+  #radio-wrapper {
+    grid-template-columns: 1fr; /* Fica apenas uma coluna */
+  }
+}
+
+/*Estilização das duas primeiras imagens*/
+.radio-inner {
+  border: 1px solid var(--stroke-default);
+  border-radius: 0.5rem;
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+  padding: 2rem 0.5rem 0.5rem;
+  position: relative;
+
+  & input,
+  & input:focus,
+  & input:hover {
+    all: unset;
+    position: absolute;
+    inset: 0;
+  }
+  .radio-image {
+    background-image: url("../icons/radio.svg");
+    width: 1.5rem;
+    height: 1.5rem;
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+  }
+  &:hover,
+  &:focus-within {
+    border: 1px solid var(--stroke-highlight);
+    & .radio-image {
+      background-image: url("../icons/radio\ \(1\).svg");
+    }
+  }
+  &:has(:checked) {
+    border: 2px solid var(--stroke-highlight);
+
+    & .radio-image {
+      background-image: url("../icons/radio-checked.svg");
+      background-repeat: no-repeat;
+    }
+  }
 }
