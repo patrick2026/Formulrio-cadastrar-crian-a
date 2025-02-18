@@ -25,6 +25,7 @@
 
 body {
   overflow: hidden; /*nunca vai ter rolagem, e transbordamento */
+  overflow-y: hidden; /* Remove a rolagem vertical */
   font: var(--text);
   color: var(--text-secondary);
 }
@@ -59,7 +60,11 @@ img {
 }
 
 /* ------------------------------------------------------------------ */
-
+body {
+  overflow: auto; /* Permite rolagem na página */
+  font: var(--text);
+  color: var(--text-secondary);
+}
 #app {
   display: grid;
   grid-template-columns: 51.25% 48.75%;
@@ -302,31 +307,6 @@ label + .radio-wrapper {
   gap: 1rem;
 }
 
-/* Responsividade para telas menores */
-@media (max-width: 768px) {
-  .radio-wrapper-um {
-    grid-template-columns: 1fr; /* Passa para 1 coluna */
-  }
-
-  #radio-wrapper {
-    grid-template-columns: repeat(
-      auto-fill,
-      minmax(7.5rem, 1fr)
-    ); /* Ajusta o tamanho mínimo */
-  }
-}
-
-/* Responsividade para telas muito pequenas (celulares) */
-@media (max-width: 480px) {
-  .radio-wrapper-um {
-    grid-template-columns: 1fr; /* Mantém uma única coluna */
-  }
-
-  #radio-wrapper {
-    grid-template-columns: 1fr; /* Fica apenas uma coluna */
-  }
-}
-
 /*Estilização das duas primeiras imagens*/
 .radio-inner {
   border: 1px solid var(--stroke-default);
@@ -396,17 +376,17 @@ label + .radio-wrapper {
   .checkbox-image {
     flex: 0 0 1.5rem;
     height: 1.5rem;
-    background-image: url("../icons/checkmark-padrao.svg");
+    background-image: url("./icons/checkmark-padrao.svg");
     background-repeat: no-repeat;
   }
   &:hover,
   &:focus-within {
     .checkbox-image {
-      background-image: url("../icons/checkmark-hover.svg");
+      background-image: url("./icons/checkmark-hover.svg");
     }
   }
   &:has(:checked) .checkbox-image {
-    background-image: url("../icons/checkmark-checked.svg");
+    background-image: url("./icons/checkmark-checked.svg");
   }
 }
 
@@ -446,4 +426,92 @@ button {
 .btn-secondary:focus {
   outline: 0.25rem solid var(--surface-secondary);
   color: #e43a12;
+}
+
+/* Responsividade do layout principal */
+/* Responsividade para telas menores (abaixo de 780px) */
+@media (max-width: 780px) {
+  .radio-wrapper-um {
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas em telas menores */
+  }
+
+  /* Ajustes de tamanho de fonte para títulos e parágrafos */
+  h1,
+  h2 {
+    font-size: 0.25rem; /* Ajusta o tamanho dos títulos para telas menores */
+  }
+
+  p {
+    font-size: 0.25rem; /* Ajusta o tamanho dos parágrafos */
+  }
+
+  .action-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+button {
+  width: 120%;
+}
+
+/* Responsividade para telas muito pequenas (abaixo de 300px) */
+@media (max-width: 300px) {
+  .radio-wrapper-um {
+    grid-template-columns: 1fr; /* 1 coluna em telas muito pequenas */
+  }
+
+  /* Ajustes de tamanho de fonte para títulos e parágrafos */
+  h1,
+  h2 {
+    font-size: 0.75rem; /* Ajusta o tamanho dos títulos */
+  }
+
+  p {
+    font-size: 0.4rem; /* Ajusta o tamanho dos parágrafos */
+  }
+
+  /* Ajusta o botão para telas muito pequenas */
+  .action-wrapper button {
+    width: 100%; /* Faz o botão ocupar toda a largura disponível */
+  }
+}
+
+/* Estilo geral para o conteúdo */
+body {
+  font-family: "Poppins", sans-serif;
+  color: var(--text-secondary);
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* Ajustes nos títulos para tornar o layout mais bonito */
+h1,
+h2 {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  text-align: center; /* Centraliza os títulos em telas menores */
+}
+
+/* Ajustes para os parágrafos */
+p {
+  font-size: 1rem; /* Ajuste inicial para texto de parágrafo */
+  line-height: 1;
+  text-align: center; /* Centraliza os textos em telas menores */
+  margin-bottom: 1.5rem; /* Espaçamento abaixo dos parágrafos */
+}
+
+/* Ajustes para o aside */
+aside {
+  padding: 2rem;
+  text-align: center; /* Centraliza o conteúdo do aside */
+  margin-top: 1rem;
+}
+
+aside h2 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+aside p {
+  font-size: 1rem;
 }
